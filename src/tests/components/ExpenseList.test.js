@@ -1,0 +1,14 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+import ExpenseList from '../../components/ExpenseList';
+import expenses from '../fixtures/expenses';
+
+test('shoudl render ExpenseList with expenses', () => {
+  const wrapper = shallow(<ExpenseList expense={expenses}/>);
+  expect(wrapper).toMatchSnapshot();
+});
+
+test('shoudl render ExpenseList with empty expenses', () => {
+  const wrapper = shallow(<ExpenseList expense={[]}/>);
+  expect(wrapper).toMatchSnapshot();
+});
