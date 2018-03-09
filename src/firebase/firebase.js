@@ -13,9 +13,75 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().on('value', (snapshot) => {
-  console.log(snapshot.val());
+//child_changed
+database.ref('expensify').on('child_changed', (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
 });
+
+// database.ref('expensify')
+//   .once('value')
+//   .then((snapshot) => {
+//   const expenses = [];
+//
+//   snapshot.forEach((childSnapshot) => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val()
+//     });
+//   });
+//   console.log(expenses);
+// });
+
+// database.ref('expensify').on('value', (snapshot) => {
+//   const expenses = [];
+//
+//   snapshot.forEach((childSnapshot) => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val()
+//     });
+//   });
+//   console.log(expenses);
+// });
+
+// database.ref('expensify').push({
+//   description: 'Rent',
+//   note: '',
+//   amount: 1095,
+//   createdAt: 0
+// });
+
+
+
+// const onValueChange = database.ref().on('value', (snapshot) => {
+//   console.log(snapshot.val());
+// }, (e) => {
+//   console.log('Error with fetching data', e);
+// });
+
+// database.ref().on('value', (snapshot) => {
+//   const user = snapshot.val();
+//   console.log(`${user.name} is a ${user.job.title} at ${user.location.city}`);
+// });
+//
+// setTimeout(() => {
+//   database.ref('job/title').set('ReactJS developer');
+//   database.ref('location/city').set('New York');
+// }, 5000);
+
+
+
+// setTimeout(() => {
+//   database.ref('age').set(29);
+// }, 3500);
+//
+// setTimeout(() => {
+//   database.ref().off();
+// }, 7000);
+//
+// setTimeout(() => {
+//   database.ref('age').set(32);
+// }, 10500);
 
 // database.ref().set({
 //   name: 'Patrick',
